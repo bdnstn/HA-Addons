@@ -1,4 +1,4 @@
 # https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
 name: Brian's Home Assistant add-on repository
-url: 'https://github.com/bdnstn/addons-example'
-maintainer: Brian DUnstan <bdnstn@gmail.com>
+url: 'https://github.com/bdnstn/HA-Addons'
+maintainer: Brian Dunstan <bdnstn@gmail.com>
