@@ -1,0 +1,42 @@
+#!/usr/bin/with-contenv bashio
+
+set -e
+
+CONFIG="/usr/local/bin/cgateweb/settings.js"
+
+bashio::log.info "Creating cgateweb settings.js..."
+
+# Get config values into variables
+#CBUSIP=$(bashio::config 'cbusip') 
+CBUSIP='127.0.0.1'
+CBUSNAME=$(bashio::config 'cbusname') 
+# TODO get these values (plus mqtt port) from service
+MQTT=$(bashio::services mqtt 'host'):$(bashio::services mqtt 'port') 
+# MQTT=$(bashio::services mqtt 'host') 
+MQTTUSERNAME=$(bashio::services mqtt 'username')
+MQTTPASSWORD=$(bashio::services mqtt 'password')
+GETALLNETAPP=$(bashio::config 'getallnetapp')
+GETALLONSTART=$(bashio::config 'getallonstart')
+GETALLPERIOD=$(bashio::config 'getallperiod')
+RETAINREADS=$(bashio::config 'retainreads')
+MESSAGEINTERVAL=$(bashio::config 'messageinterval')
+LOGGING=$(bashio::config 'logging')
+
+    {
+        echo "exports.cbusip = '${CBUSIP}';"
+        echo "exports.cbusname = '${CBUSNAME}';"
+        echo "exports.mqtt = '${MQTT}';"
+        echo "exports.mqttusername = '${MQTTUSERNAME}';"
+        echo "exports.mqttpassword = '${MQTTPASSWORD}';"
+        echo "exports.getallnetapp = '${GETALLNETAPP}';"
+        echo "exports.getallonstart = '${GETALLONSTART}';"
+        echo "exports.getallperiod = '${GETALLPERIOD}';"
+        echo "exports.retainreads = '${RETAINREADS}';"
+        echo "exports.messageinterval = '${MESSAGEINTERVAL}';"
+        echo "exports.logging = '${LOGGING}';"
+    } > "${CONFIG}"
+
+bashio::log.info "Starting cgateweb"
+cd /usr/local/bin/cgateweb
+node index.js
+

@@ -1,0 +1,51 @@
+# For an overview of all valid add-on configuration options have a look here : https://developers.home-assistant.io/docs/add-ons/configuration/#add-on-configuration
+name: "C-Bus CGate to MQTT Server"
+description: "Bridge C-Bus to MQTT via a serial interface. Runs three processes: CGate, ser2sock and cgateweb."
+version: "0.2.2"
+slug: "cbuscgate2mqtt"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+usb: true
+serial: true
+services:
+  - mqtt:need
+
+devices:
+  - /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0
+  - /dev/serial/by-id/usb-Keyspan__a_division_of_InnoSys_Inc._Keyspan_USA-19H-if00-port0
+host_network: true
+
+options:
+  # Serial device path
+  serialdevicepath: "/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0" 
+  # cbus project name
+  cbusname: "BURS1303"
+  # net and app for automatically requesting values
+  getallnetapp: "254/56"
+  #  whether to request on start (requires getallnetapp set as well)
+  getallonstart: true
+  #  how often to request after start (in seconds), (requires getallnetapp set as well)
+  getallperiod: 60*60
+  #  Sets MQTT retain flag for values coming from cgate
+  retainreads: true
+  messageinterval: 0
+  # logging
+  logging: false
+schema:
+  serialdevicepath: device
+  # cbusip: str
+  cbusname: str
+  # mqtt: str
+  # mqttusername: str
+  # mqttpassword: password
+  getallnetapp: str
+  getallonstart: bool
+  getallperiod: str
+  retainreads: bool
+  messageinterval: int
+  logging: bool

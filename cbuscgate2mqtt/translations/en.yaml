@@ -1,0 +1,26 @@
+---
+configuration:
+  serialdevicepath:
+    name: Serial device path
+    description: Path to USB to serial converter or serial port.
+  cbusname:
+    name: C-Bus project name
+    descriotion: C-Bus project name, without xml extension.
+  getallnetapp:
+    name: C-Bus net/app
+    description: C-Bus network and application to use when automatically requesting values. Usually 254/56.
+  getallonstart:
+    name: Auto get all
+    description: Automatically get all network values when starting (requires "C-Bus net/app" set as well).
+  getallperiod:  
+    name: getallperiod
+    description: How often to request after start (in seconds), (requires "C-Bus net/app" set as well).
+  retainreads:
+    name: Retain reads
+    description: Sets MQTT retain flag for values coming from cgate.
+  messageinterval:
+    name: Message interval
+    descriotion: Delay between messages.
+  logging:
+    name: Logging
+    description: Enable cgateweb logging.

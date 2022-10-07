@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bashio
+### #!/command/execlineb -P
+bashio::log.info "Starting cgate"
+cd /usr/local/bin/cgate
+/usr/bin/java -Djava.awt.headless=true -jar -noverify /usr/local/bin/cgate/cgate.jar
