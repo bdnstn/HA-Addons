@@ -1,11 +1,8 @@
-# Brian's Home Assistant add-on repository
-
-Nothing useful here yet, but I have plans...
-
+# Dunstan Informatic's Home Assistant add-on repository
 
 ## Add-ons
 
-This repository contains nothing yet. The following are just add-ons
+### [C-Bus to MQTT via CGate](./example) Control Clipsal C-Bus from Home Assistant
 
 ### [Example add-on](./example)
 
