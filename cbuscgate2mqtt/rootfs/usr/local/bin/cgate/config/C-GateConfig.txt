@@ -234,7 +234,7 @@ config-change-port=20026
 # Scope:         global
 # Effective on:  restart
 ###
-config-path=config
+config-path=\data\cgate\config
 
 #### console.enable-commands:
 # allow command input on the console
@@ -282,7 +282,7 @@ event-file.event-level=0
 # Scope:         global
 # Effective on:  restart
 ###
-event-file.keep-days=0
+event-file.keep-days=7
 
 #### event-file.split:
 # Determines whether the event-file will be split
@@ -290,7 +290,7 @@ event-file.keep-days=0
 # Scope:         global
 # Effective on:  restart
 ###
-event-file.split=no
+event-file.split=yes
 
 #### event-file.split-count:
 # Maximum number of split event-files
@@ -298,7 +298,7 @@ event-file.split=no
 # Scope:         global
 # Effective on:  restart
 ###
-event-file.split-count=0
+event-file.split-count=50
 
 #### event-file.split-size:
 # Size in bytes at which to split the event-file
@@ -314,7 +314,7 @@ event-file.split-size=5000000
 # Scope:         global
 # Effective on:  restart
 ###
-event-file.startup-dump=no
+event-file.startup-dump=yes
 
 #### event-filename:
 # Filename for the event log (if enabled by use-event-file)
@@ -642,7 +642,7 @@ project.default.archive-dir=tag/archived
 # Scope:         global
 # Effective on:  restart
 ###
-project.default.dir=tag/
+project.default.dir=/data/cgate/tag/
 
 #### project.start:
 # Space-separated list of projects to start on server startup

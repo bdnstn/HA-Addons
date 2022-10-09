@@ -42,16 +42,10 @@ RUN \
     npm install
 
 # Configure cgateweb
-RUN \
-     cd /usr/local/bin/cgateweb && \
-     rm settings.js 
-
-# COPY rootfs/usr/local/bin/cgateweb/settings.js /usr/local/bin/cgateweb/settings.js
 # RUN \
-#     chmod a+x /usr/local/bin/cgateweb/settings.js && \
-#     chmod a+x /usr/local/bin/cgateweb/index.js
+#      cd /usr/local/bin/cgateweb && \
+#      rm settings.js 
 
-# TODO - get the tag file from somewhere else
 COPY rootfs/usr/local/bin/cgate/tag/ /usr/local/bin/cgate/tag/
 COPY rootfs/usr/local/bin/cgate/config/ /usr/local/bin/cgate/config/
 

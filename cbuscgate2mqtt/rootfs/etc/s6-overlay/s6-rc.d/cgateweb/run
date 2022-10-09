@@ -7,12 +7,9 @@ CONFIG="/usr/local/bin/cgateweb/settings.js"
 bashio::log.info "Creating cgateweb settings.js..."
 
 # Get config values into variables
-#CBUSIP=$(bashio::config 'cbusip') 
 CBUSIP='127.0.0.1'
 CBUSNAME=$(bashio::config 'cbusname') 
-# TODO get these values (plus mqtt port) from service
 MQTT=$(bashio::services mqtt 'host'):$(bashio::services mqtt 'port') 
-# MQTT=$(bashio::services mqtt 'host') 
 MQTTUSERNAME=$(bashio::services mqtt 'username')
 MQTTPASSWORD=$(bashio::services mqtt 'password')
 GETALLNETAPP=$(bashio::config 'getallnetapp')

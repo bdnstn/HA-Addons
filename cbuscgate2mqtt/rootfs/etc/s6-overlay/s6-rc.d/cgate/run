@@ -1,5 +1,15 @@
 #!/usr/bin/with-contenv bashio
-### #!/command/execlineb -P
-bashio::log.info "Starting cgate"
+
+set -e
+
+CBUSNAME=$(bashio::config 'cbusname')
+
+bashio::log.info "Copying cgate config files to /data/cgate"
 cd /usr/local/bin/cgate
+mkdir -p /data/cgate
+mkdir -p /data/cgate/tag
+mkdir -p /data/cgate/config
+cp -n tag/${CBUSNAME}.* /data/cgate/tag
+cp -n config/*.txt /data/cgate/config
+bashio::log.info "Starting cgate"
 /usr/bin/java -Djava.awt.headless=true -jar -noverify /usr/local/bin/cgate/cgate.jar
