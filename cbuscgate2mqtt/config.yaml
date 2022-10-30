@@ -1,9 +1,10 @@
 # For an overview of all valid add-on configuration options have a look here : https://developers.home-assistant.io/docs/add-ons/configuration/#add-on-configuration
 name: "C-Bus CGate to MQTT Server"
 description: "Bridge C-Bus to MQTT via a serial interface. Runs three processes: CGate, ser2sock and cgateweb."
-version: "0.2.7"
+version: "0.2.11"
 slug: "cbuscgate2mqtt"
 init: false
+#tmpfs: true
 arch:
   - aarch64
   - amd64
@@ -11,19 +12,25 @@ arch:
   - armv7
   - i386
 usb: true
+#serial: true
+#map:
+#  - share
+
 services:
   - mqtt:need
 
-devices:
-  - /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0
-  - /dev/serial/by-id/usb-Keyspan__a_division_of_InnoSys_Inc._Keyspan_USA-19H-if00-port0
+# devices:
+#   - /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0
+#   - /dev/serial/by-id/usb-Keyspan__a_division_of_InnoSys_Inc._Keyspan_USA-19H-if00-port0
 host_network: true
 
 options:
-  # Serial device path
+  # Serial device path for ser2sock
   serialdevicepath: "/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0" 
   # cbus project name
   cbusname: "BURS1303"
+  # CGate logs a lot of events, so drect to null to save the SD.
+  cgateEventsToNullFile: true
   # net and app for automatically requesting values
   getallnetapp: "254/56"
   #  whether to request on start (requires getallnetapp set as well)
@@ -33,15 +40,12 @@ options:
   #  Sets MQTT retain flag for values coming from cgate
   retainreads: true
   messageinterval: 0
-  # logging
+  # cgateweb logging
   logging: false
 schema:
   serialdevicepath: device
-  # cbusip: str
   cbusname: str
-  # mqtt: str
-  # mqttusername: str
-  # mqttpassword: password
+  cgateEventsToNullFile: bool
   getallnetapp: str
   getallonstart: bool
   getallperiod: str

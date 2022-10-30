@@ -2,7 +2,9 @@
 
 set -e
 
+# Get config values into variables
 CBUSNAME=$(bashio::config 'cbusname')
+CBUSEVENTSTONULLFILE=$(bashio::config 'cgateEventsToNullFile')
 
 bashio::log.info "Copying cgate config files to /data/cgate"
 cd /usr/local/bin/cgate
@@ -11,5 +13,19 @@ mkdir -p /data/cgate/tag
 mkdir -p /data/cgate/config
 cp -n tag/${CBUSNAME}.* /data/cgate/tag
 cp -n config/*.txt /data/cgate/config
+
+# CGate logs a lot of events, so drect to null to save the SD.
+mkdir /usr/local/bin/cgate/logs
+cd /usr/local/bin/cgate/logs
+if [ $CBUSEVENTSTONULLFILE ]
+then
+    ln -s /dev/null event.txt
+    bashio::log.info "Cgate event log redirected to null"
+else 
+    rm -f event.txt    
+    bashio::log.info "Cgate event logging enabled"
+fi
+cd /usr/local/bin/cgate
+
 bashio::log.info "Starting cgate"
 /usr/bin/java -Djava.awt.headless=true -jar -noverify /usr/local/bin/cgate/cgate.jar

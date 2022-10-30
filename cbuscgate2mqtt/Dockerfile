@@ -47,11 +47,5 @@ RUN \
 COPY rootfs/usr/local/bin/cgate/tag/ /usr/local/bin/cgate/tag/
 COPY rootfs/usr/local/bin/cgate/config/ /usr/local/bin/cgate/config/
 
-# CGate logs a lot of events, so drect to null to save the SD.
-RUN \
-    mkdir /usr/local/bin/cgate/logs && \
-    cd /usr/local/bin/cgate/logs && \
-    ln -s /dev/null event.txt
-
 COPY rootfs/etc /etc/
 # Services are started by s6-overlay scripts copied in /etc/s6-overlay/s6-rc.d/
