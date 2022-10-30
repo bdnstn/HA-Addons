@@ -35,17 +35,15 @@ RUN \
     git clone https://github.com/bdnstn/cgateweb.git && \
     cd /usr/local/bin/cgateweb && \
     chmod a+x index.js 
+    # settings.js will be overwritten by /etc/s6-overlay/s6-rc.d/cgateweb/run
 
+# Install node package manager dependency for cgateweb
 RUN \
     cd /usr/local/bin/cgateweb && \
     apk add --no-cache npm && \
     npm install
 
-# Configure cgateweb
-# RUN \
-#      cd /usr/local/bin/cgateweb && \
-#      rm settings.js 
-
+# Copy the c-gate config files. This is WIP as these files need to go into /data to make them persistent.
 COPY rootfs/usr/local/bin/cgate/tag/ /usr/local/bin/cgate/tag/
 COPY rootfs/usr/local/bin/cgate/config/ /usr/local/bin/cgate/config/
 
@@ -56,3 +54,4 @@ RUN \
     ln -s /dev/null event.txt
 
 COPY rootfs/etc /etc/
+# Services are started by s6-overlay scripts copied in /etc/s6-overlay/s6-rc.d/
