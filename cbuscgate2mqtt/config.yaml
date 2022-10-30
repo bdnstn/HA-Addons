@@ -1,7 +1,7 @@
 # For an overview of all valid add-on configuration options have a look here : https://developers.home-assistant.io/docs/add-ons/configuration/#add-on-configuration
 name: "C-Bus CGate to MQTT Server"
 description: "Bridge C-Bus to MQTT via a serial interface. Runs three processes: CGate, ser2sock and cgateweb."
-version: "0.2.11"
+version: "0.2.13"
 slug: "cbuscgate2mqtt"
 init: false
 #tmpfs: true
@@ -12,9 +12,9 @@ arch:
   - armv7
   - i386
 usb: true
-#serial: true
-#map:
-#  - share
+serial: true
+map:
+  - share
 
 services:
   - mqtt:need
