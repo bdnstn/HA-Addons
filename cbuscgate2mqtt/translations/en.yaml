@@ -6,9 +6,12 @@ configuration:
   cbusname:
     name: C-Bus project name
     descriotion: C-Bus project name, without xml extension.
-  cgateEventsToNullFile:
-    name: Log cgate events to null
-    description: CGate logs a lot of events, so drect to null to save the SD.
+  useeventfile:
+    name: Log C-Gate events to a file
+    description: Create an events.txt file in the cgate/logs directory in the add-on.
+  eventlevel:
+    name: C-Gate event leve to log to the events file
+    description: Level 9 is most detailed. Does nothing if logging to a file is disabled.
   getallnetapp:
     name: C-Bus net/app
     description: C-Bus network and application to use when automatically requesting values. Usually 254/56.

@@ -1,0 +1,17 @@
+#!/usr/bin/with-contenv bashio
+bashio::log.info "Finishing the cbus cgate 2 mqtt addon"
+
+set -e
+
+bashio::log.info "Copying project, config and event logs, if any."
+
+mkdir -p /share/cgate/tag
+mkdir -p /share/cgate/logs
+mkdir -p /share/cgate/config
+
+bashio::log.info "Removing any existing files from /share/cgate/logs"
+rm -r /share/cgate/logs/*.*
+
+cp -uvr /data/cgate/*.* /share/cgate/
+
+bashio::log.info "Copy complete. All done."

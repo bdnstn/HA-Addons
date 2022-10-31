@@ -2,10 +2,10 @@
 # here : https://developers.home-assistant.io/docs/add-ons/configuration/#add-on-configuration
 name: "C-Bus CGate to MQTT Server"
 description: "Bridge C-Bus to MQTT via a serial interface. Runs three processes: CGate, ser2sock and cgateweb."
-version: "0.2.13"
+version: "0.2.27"
 slug: "cbuscgate2mqtt"
 init: false
-#tmpfs: true
+tmpfs: true
 arch:
   - aarch64
   - amd64
@@ -13,16 +13,13 @@ arch:
   - armv7
   - i386
 usb: true
-serial: true
+uart: true
 map:
-  - share
+  - share:rw
 
 services:
   - mqtt:need
 
-# devices:
-#   - /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0
-#   - /dev/serial/by-id/usb-Keyspan__a_division_of_InnoSys_Inc._Keyspan_USA-19H-if00-port0
 host_network: true
 
 options:
@@ -30,8 +27,10 @@ options:
   serialdevicepath: "/dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0" 
   # cbus project name
   cbusname: "BURS1303"
-  # CGate logs a lot of events, so drect to null to save the SD.
-  cgateEventsToNullFile: true
+  # Save CGate events to file.
+  useeventfile: false
+  # Event level to log to the event file
+  eventlevel: 9
   # net and app for automatically requesting values
   getallnetapp: "254/56"
   #  whether to request on start (requires getallnetapp set as well)
@@ -46,7 +45,8 @@ options:
 schema:
   serialdevicepath: device
   cbusname: str
-  cgateEventsToNullFile: bool
+  useeventfile: bool
+  eventlevel: int(0,9)
   getallnetapp: str
   getallonstart: bool
   getallperiod: str

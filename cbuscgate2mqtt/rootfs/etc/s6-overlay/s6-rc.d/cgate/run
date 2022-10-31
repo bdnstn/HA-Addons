@@ -1,30 +1,38 @@
 #!/usr/bin/with-contenv bashio
+bashio::log.info "Configuring cgate service"
 
 set -e
 
 # Get config values into variables
 CBUSNAME=$(bashio::config 'cbusname')
-CBUSEVENTSTONULLFILE=$(bashio::config 'cgateEventsToNullFile')
+#CBUSEVENTSTONULLFILE=$(bashio::config 'cgateEventsToNullFile')
+USEEVENTFILE=$(bashio::config 'useeventfile')
+EVENTLEVEL=$(bashio::config 'eventlevel')
 
-bashio::log.info "Copying cgate config files to /data/cgate"
-cd /usr/local/bin/cgate
-mkdir -p /data/cgate
+bashio::log.info "Checking for new or updated cbus project file in /share/cgate/tag"
 mkdir -p /data/cgate/tag
-mkdir -p /data/cgate/config
-cp -n tag/${CBUSNAME}.* /data/cgate/tag
-cp -n config/*.txt /data/cgate/config
-
-# CGate logs a lot of events, so drect to null to save the SD.
-mkdir /usr/local/bin/cgate/logs
-cd /usr/local/bin/cgate/logs
-if [ $CBUSEVENTSTONULLFILE ]
+if [ -f /share/cgate/tag/${CBUSNAME}.xml ]
 then
-    ln -s /dev/null event.txt
-    bashio::log.info "Cgate event log redirected to null"
-else 
-    rm -f event.txt    
-    bashio::log.info "Cgate event logging enabled"
+  cp -uv /share/cgate/tag/${CBUSNAME}.xml /data/cgate/tag
 fi
+
+if ! [ -f /data/cgate/tag/${CBUSNAME}.xml ]
+then
+  bashio::log.fatal "Cbus project file /data/cgate/tag/${CBUSNAME}.xml not found!"
+fi 
+
+bashio::log.info "Customising cgate C-GateConfig.txt"
+sed -i "/project.default=/c\project.default=${CBUSNAME}" /usr/local/bin/cgate/config/C-GateConfig.txt
+sed -i "/project.start=/c\project.start=${CBUSNAME}" /usr/local/bin/cgate/config/C-GateConfig.txt
+sed -i "/project.default.dir=/c\project.default.dir=/data/cgate/tag" /usr/local/bin/cgate/config/C-GateConfig.txt
+if [ $USEEVENTFILE == true ]
+then
+    sed -i "/use-event-file=/c\use-event-file=yes" /usr/local/bin/cgate/config/C-GateConfig.txt
+else
+    sed -i "/use-event-file=/c\use-event-file=no" /usr/local/bin/cgate/config/C-GateConfig.txt
+fi
+sed -i "/event-file.event-level=/c\event-file.event-level=${EVENTLEVEL}" /usr/local/bin/cgate/config/C-GateConfig.txt
+
 cd /usr/local/bin/cgate
 
 bashio::log.info "Starting cgate"

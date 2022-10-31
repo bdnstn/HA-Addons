@@ -1,7 +1,7 @@
 ##C-Gate Server Global Configuration File
 ## This file was written automatically by a command issued to the server
-## Created:Sun Jul 03 13:31:04 BST 2022
-## File name: /usr/local/bin/cgate/config/C-GateConfig.txt
+## Created:Mon Oct 31 09:57:30 AWST 2022
+## File name: C:\Program Files (x86)\Clipsal\C-Gate2\config\C-GateConfig.txt
 ## Note, backslash characters in property values must be shown as '\\'
 
 #### accept-connections-from:
@@ -234,7 +234,7 @@ config-change-port=20026
 # Scope:         global
 # Effective on:  restart
 ###
-config-path=\data\cgate\config
+config-path=config
 
 #### console.enable-commands:
 # allow command input on the console
@@ -274,7 +274,7 @@ event-file.buffer-size=2000
 # Scope:         global
 # Effective on:  restart
 ###
-event-file.event-level=0
+event-file.event-level=9
 
 #### event-file.keep-days:
 # Number of days worth of event files to keep
@@ -626,7 +626,7 @@ pp.spec-base-directory=unitspec/
 # Scope:         global
 # Effective on:  restart
 ###
-project.default=BURS1303
+project.default=
 
 #### project.default.archive-dir:
 # Directory where archived projects are stored
@@ -642,7 +642,7 @@ project.default.archive-dir=tag/archived
 # Scope:         global
 # Effective on:  restart
 ###
-project.default.dir=/data/cgate/tag/
+project.default.dir=tag/
 
 #### project.start:
 # Space-separated list of projects to start on server startup
@@ -650,7 +650,7 @@ project.default.dir=/data/cgate/tag/
 # Scope:         global
 # Effective on:  restart
 ###
-project.start=BURS1303
+project.start=
 
 #### reopen-delay:
 # Delay time in milliseconds between attempted re-opens of a network
@@ -922,7 +922,7 @@ use-config-change-port=yes
 # Scope:         global
 # Effective on:  restart
 ###
-use-event-file=no
+use-event-file=yes
 
 #### use-load-change-port:
 # Start the load change port

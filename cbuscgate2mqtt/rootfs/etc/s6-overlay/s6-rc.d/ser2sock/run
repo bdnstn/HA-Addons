@@ -2,7 +2,5 @@
 bashio::log.info "Starting ser2sock"
 SERIALDEVICEPATH=$(bashio::config 'serialdevicepath')
 cd /usr/local/bin/ser2sock
-# /usr/local/bin/ser2sock/ser2sock -p 10001 -s /dev/serial/by-id/usb-Prolific_Technology_Inc._USB-Serial_Controller-if00-port0 -b 9600
-# /usr/local/bin/ser2sock/ser2sock -p 10001 -s /dev/serial/by-id/usb-Keyspan__a_division_of_InnoSys_Inc._Keyspan_USA-19H-if00-port0 -b 9600
 /usr/local/bin/ser2sock/ser2sock -p 10001 -s ${SERIALDEVICEPATH} -b 9600
 

@@ -28,6 +28,10 @@ RUN \
     cp -rp cgate /usr/local/bin && \
     rm cgate-2.11.4_3251.zip && \
     rm -rf cgate
+# Copy a default c-gate config files so they are available for customisation when the add-on starts.
+COPY rootfs/usr/local/bin/cgate/config/ /usr/local/bin/cgate/config/
+# Copy the project file - this is WIP - it needs to happen when the add-on starts...
+# COPY rootfs/usr/local/bin/cgate/tag/ /usr/local/bin/cgate/tag/
 
 # Clone cgateweb
 RUN \
@@ -42,10 +46,6 @@ RUN \
     cd /usr/local/bin/cgateweb && \
     apk add --no-cache npm && \
     npm install
-
-# Copy the c-gate config files. This is WIP as these files need to go into /data to make them persistent.
-COPY rootfs/usr/local/bin/cgate/tag/ /usr/local/bin/cgate/tag/
-COPY rootfs/usr/local/bin/cgate/config/ /usr/local/bin/cgate/config/
 
 COPY rootfs/etc /etc/
 # Services are started by s6-overlay scripts copied in /etc/s6-overlay/s6-rc.d/
