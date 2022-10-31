@@ -21,17 +21,16 @@ RUN \
     rm -rf ser2sock
 
 RUN \
-    # mkdir /usr/local/bin/cgate && \
+    # Download unpack and copy CGate
     cd /tmp && \
     curl -O https://updates.clipsal.com/ClipsalSoftwareDownload/mainsite/cis/technical/CGate/cgate-2.11.4_3251.zip && \
     unzip cgate-2.11.4_3251.zip && \
     cp -rp cgate /usr/local/bin && \
     rm cgate-2.11.4_3251.zip && \
     rm -rf cgate
-# Copy a default c-gate config files so they are available for customisation when the add-on starts.
-COPY rootfs/usr/local/bin/cgate/config/ /usr/local/bin/cgate/config/
-# Copy the project file - this is WIP - it needs to happen when the add-on starts...
-# COPY rootfs/usr/local/bin/cgate/tag/ /usr/local/bin/cgate/tag/
+
+# Copy the default c-gate config files so they are available for customisation when the add-on starts.
+COPY rootfs/usr/local/bin/cgate/config /usr/local/bin/cgate/config
 
 # Clone cgateweb
 RUN \

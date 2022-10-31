@@ -5,21 +5,19 @@ set -e
 
 # Get config values into variables
 CBUSNAME=$(bashio::config 'cbusname')
-#CBUSEVENTSTONULLFILE=$(bashio::config 'cgateEventsToNullFile')
 USEEVENTFILE=$(bashio::config 'useeventfile')
 EVENTLEVEL=$(bashio::config 'eventlevel')
 
-bashio::log.info "Checking for new or updated cbus project file in /share/cgate/tag"
-mkdir -p /data/cgate/tag
-if [ -f /share/cgate/tag/${CBUSNAME}.xml ]
+if ! [ -f /share/cgate/tag/${CBUSNAME}.xml ]
 then
-  cp -uv /share/cgate/tag/${CBUSNAME}.xml /data/cgate/tag
-fi
-
-if ! [ -f /data/cgate/tag/${CBUSNAME}.xml ]
-then
-  bashio::log.fatal "Cbus project file /data/cgate/tag/${CBUSNAME}.xml not found!"
+  bashio::log.fatal "Cbus project file /share/cgate/tag/${CBUSNAME}.xml not found!"
 fi 
+
+# Create symlinks for project and log directories
+rm -r /usr/local/bin/cgate/tag 
+ln -s /share/cgate/tag /usr/local/bin/cgate/tag
+mkdir -p /share/cgate/logs
+ln -s /share/cgate/logs /usr/local/bin/cgate/logs
 
 bashio::log.info "Customising cgate C-GateConfig.txt"
 sed -i "/project.default=/c\project.default=${CBUSNAME}" /usr/local/bin/cgate/config/C-GateConfig.txt

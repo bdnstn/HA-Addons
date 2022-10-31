@@ -8,7 +8,7 @@ configuration:
     descriotion: C-Bus project name, without xml extension.
   useeventfile:
     name: Log C-Gate events to a file
-    description: Create an events.txt file in the cgate/logs directory in the add-on.
+    description: Create an events.txt file in the /share/cgate/logs directory of the server.
   eventlevel:
     name: C-Gate event leve to log to the events file
     description: Level 9 is most detailed. Does nothing if logging to a file is disabled.
@@ -29,4 +29,4 @@ configuration:
     descriotion: Delay between messages.
   logging:
     name: Logging
-    description: Enable cgateweb logging.
+    description: Enable cgateweb logging to addon log.
