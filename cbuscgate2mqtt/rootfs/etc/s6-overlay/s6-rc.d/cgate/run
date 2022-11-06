@@ -22,7 +22,6 @@ ln -s /share/cgate/logs /usr/local/bin/cgate/logs
 bashio::log.info "Customising cgate C-GateConfig.txt"
 sed -i "/project.default=/c\project.default=${CBUSNAME}" /usr/local/bin/cgate/config/C-GateConfig.txt
 sed -i "/project.start=/c\project.start=${CBUSNAME}" /usr/local/bin/cgate/config/C-GateConfig.txt
-sed -i "/project.default.dir=/c\project.default.dir=/data/cgate/tag" /usr/local/bin/cgate/config/C-GateConfig.txt
 if [ $USEEVENTFILE == true ]
 then
     sed -i "/use-event-file=/c\use-event-file=yes" /usr/local/bin/cgate/config/C-GateConfig.txt
