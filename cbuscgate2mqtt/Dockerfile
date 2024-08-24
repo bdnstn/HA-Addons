@@ -3,7 +3,7 @@ FROM $BUILD_FROM
 
 RUN apk add --no-cache openjdk8-jre
 
-# C-Gate port 20023 to allow c-bus toolkit connection from PC
+# C-Gate port 20023 to allow c-bus toolkit connection from PC - maybe should be 20123 for remote c-gate site?
 EXPOSE 20023
 
 # Build and install the ser2sock application
@@ -22,6 +22,7 @@ RUN \
 
 RUN \
     # Download unpack and copy CGate
+    # Update to get from rootfs/usr/local/bin/cgate/config /usr/local/bin/cgate/
     cd /tmp && \
     curl -O https://updates.clipsal.com/ClipsalSoftwareDownload/mainsite/cis/technical/CGate/cgate-2.11.4_3251.zip && \
     unzip cgate-2.11.4_3251.zip && \
