@@ -35,7 +35,6 @@ LOGGING=$(bashio::config 'logging')
         echo "exports.logging = ${LOGGING};"
     } > "${CONFIG}"
 
-bashio::log.info "Starting cgateweb"
+bashio::log.info "Starting cgateweb!"
 cd /usr/local/bin/cgateweb
 node index.js
-
