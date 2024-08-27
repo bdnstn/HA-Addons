@@ -1,5 +1,7 @@
 #!/usr/bin/with-contenv bashio
-
+bashio::log.info "Preparing to start cgateweb..."
+bashio::log.info "Pausing cgateweb to allow C-Gate to get up and going..."
+sleep 10
 set -e
 
 CONFIG="/usr/local/bin/cgateweb/settings.js"
@@ -33,7 +35,7 @@ LOGGING=$(bashio::config 'logging')
         echo "exports.logging = ${LOGGING};"
     } > "${CONFIG}"
 
-bashio::log.info "Starting cgateweb"
+bashio::log.info "Starting cgateweb!"
 cd /usr/local/bin/cgateweb
 node index.js
 
