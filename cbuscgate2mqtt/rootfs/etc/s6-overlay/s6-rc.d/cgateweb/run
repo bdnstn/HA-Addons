@@ -38,4 +38,3 @@ LOGGING=$(bashio::config 'logging')
 bashio::log.info "Starting cgateweb!"
 cd /usr/local/bin/cgateweb
 node index.js
-
