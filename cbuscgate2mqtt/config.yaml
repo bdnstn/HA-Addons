@@ -45,7 +45,7 @@ options:
   retainreads: true
   messageinterval: 200
   # cgateweb logging
-  logging: false
+  logging: 0
 schema:
   serialdevicepath: device
   cbusname: str
@@ -56,6 +56,6 @@ schema:
   getallperiod: str
   retainreads: bool
   messageinterval: int
-  logging: bool
+  logging: int(0,9)
 
 codenotary: bdnstn@gmail.com
