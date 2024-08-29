@@ -16,14 +16,14 @@ configuration:
     name: C-Bus net/app
     description: C-Bus network and application to use when automatically requesting values. Usually 254/56.
   getallonstart:
-    name: Auto get all
-    description: Automatically get all network values when starting (requires "C-Bus net/app" set as well).
+    name: Auto get all on start
+    description: Automatically get all C-Bus network values when starting (requires "C-Bus net/app" set as well).
   getallperiod:  
     name: getallperiod
-    description: How often to request after start (in seconds), (requires "C-Bus net/app" set as well).
+    description: How often to refetch all C-Bus network values after start (in seconds), (requires "C-Bus net/app" set as well).
   retainreads:
     name: Retain reads
-    description: Sets MQTT retain flag for values coming from cgate.
+    description: Sets MQTT retain flag for values coming from C-Gate.
   messageinterval:
     name: Message interval
     descriotion: Delay between messages.

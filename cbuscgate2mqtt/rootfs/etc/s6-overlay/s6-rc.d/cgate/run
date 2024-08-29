@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv bashio
-bashio::log.info "Configuring cgate service"
+bashio::log.info "Preparing to start C-Gate service..."
 
 set -e
 
@@ -32,5 +32,5 @@ sed -i "/event-file.event-level=/c\event-file.event-level=${EVENTLEVEL}" /usr/lo
 
 cd /usr/local/bin/cgate
 
-bashio::log.info "Starting cgate"
+bashio::log.info "Starting C-Gate!"
 /usr/bin/java -Djava.awt.headless=true -jar -noverify /usr/local/bin/cgate/cgate.jar

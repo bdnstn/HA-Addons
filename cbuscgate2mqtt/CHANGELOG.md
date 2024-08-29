@@ -11,3 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Changelog
 - Documentation
+
+## [0.3.4] - 2024-08-25
+
+### Added
+
+- codenotary
+- Added a delay to start of cgateweb to allow C-Gate to get up and running. Solves a couple of errors.
+
+### Changed
+
+- Default message interval change to 200 ms. Seems to fix CNI busy error on startup.
+- Minor enhancement to log messages.
+_ Improved some of the parameter descriptions.
+
