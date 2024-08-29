@@ -23,5 +23,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Default message interval change to 200 ms. Seems to fix CNI busy error on startup.
 - Minor enhancement to log messages.
-_ Improved some of the parameter descriptions.
+- Improved some of the parameter descriptions.
 
+## [0.3.5] - 2024-08-29
+
+### Changed
+
+- CGateweb logging option changed to integer.
