@@ -10,7 +10,7 @@ EXPOSE 20023
 RUN \
     apk add --no-cache build-base git libressl-dev jq && \
     cd /tmp && \
-    git clone https://github.com/nutechsoftware/ser2sock.git && \
+    git clone --depth 1 https://github.com/nutechsoftware/ser2sock.git && \
     cd ser2sock && \
     ./configure && \
     make && \
@@ -36,7 +36,7 @@ COPY rootfs/usr/local/bin/cgate/config /usr/local/bin/cgate/config
 # Clone cgateweb
 RUN \
     cd /usr/local/bin && \
-    git clone https://github.com/bdnstn/cgateweb.git && \
+    git clone --depth 1 https://github.com/bdnstn/cgateweb.git && \
     cd /usr/local/bin/cgateweb && \
     chmod a+x index.js 
     # settings.js will be overwritten by /etc/s6-overlay/s6-rc.d/cgateweb/run
