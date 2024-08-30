@@ -25,8 +25,8 @@ ports:
   20024/tcp: 20024
   10001/tcp: 10001
 
-host_network: false
-apparmor: true
+# host_network: false # Lint fails because these are default values
+# apparmor: true
 
 options:
   # Serial device path for ser2sock
