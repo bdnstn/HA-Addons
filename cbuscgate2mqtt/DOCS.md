@@ -60,7 +60,7 @@ Issues a GET command to CBus
 Connects to MQTT broker
 Subscribes to cbus/write/#
 
-It apears that HA messages don't get to cbus until a first message has come from cbus. Hence GET ALL. Don't yet understand why. Try without Retain reads.
+It apears that HA messages don't get to cbus until a first message has come from cbus. Hence GET ALL. Don't yet understand why. 
 
 ### MQTT Explorer
 

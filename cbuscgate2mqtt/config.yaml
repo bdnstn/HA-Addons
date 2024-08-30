@@ -2,7 +2,7 @@
 # here : https://developers.home-assistant.io/docs/add-ons/configuration/#add-on-configuration
 name: "C-Bus CGate to MQTT Server"
 description: "Bridge C-Bus to MQTT via a serial interface. Runs three processes: CGate, ser2sock and cgateweb."
-version: "0.3.7"
+version: "0.4.0"
 slug: "cbuscgate2mqtt"
 init: false
 tmpfs: true
@@ -20,11 +20,13 @@ map:
 services:
   - mqtt:need
 
-# ports:
-#   1883/tcp: 1883  # Normal MQTT
-# I don't understand why, but I get an error that this port is already in use by the host.
+ports:
+  20023/tcp: 20023
+  20024/tcp: 20024
+  10001/tcp: 10001
 
-host_network: true # Needs to be true, but I don't understand why, if I'm only needing MQTT and the serial port.
+host_network: false
+apparmor: true
 
 options:
   # Serial device path for ser2sock

@@ -4,13 +4,14 @@ FROM $BUILD_FROM
 RUN apk add --no-cache openjdk8-jre
 
 # C-Gate port 20023 to allow c-bus toolkit connection from PC. Toolkit interface says 10001
-EXPOSE 20023 
+# EXPOSE 20023 
 
+# Install git.
 # Build and install the ser2sock application
 RUN \
     apk add --no-cache build-base git libressl-dev jq && \
     cd /tmp && \
-    git clone --depth 1 https://github.com/nutechsoftware/ser2sock.git && \
+    git clone https://github.com/nutechsoftware/ser2sock.git && \
     cd ser2sock && \
     ./configure && \
     make && \
@@ -36,7 +37,7 @@ COPY rootfs/usr/local/bin/cgate/config /usr/local/bin/cgate/config
 # Clone cgateweb
 RUN \
     cd /usr/local/bin && \
-    git clone --depth 1 https://github.com/bdnstn/cgateweb.git && \
+    git clone https://github.com/bdnstn/cgateweb.git && \
     cd /usr/local/bin/cgateweb && \
     chmod a+x index.js 
     # settings.js will be overwritten by /etc/s6-overlay/s6-rc.d/cgateweb/run
